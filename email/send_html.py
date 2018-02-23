@@ -26,9 +26,10 @@ html = """\
        How are you?<br>
        Here is the <a href="http://www.python.org">link</a> you wanted.
     </p>
+    <small>%s</small>
   </body>
 </html>
-"""
+""" % (st)
 
 part1 = MIMEText(text, 'plain')
 part2 = MIMEText(html, 'html')
