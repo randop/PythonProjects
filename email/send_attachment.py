@@ -15,10 +15,13 @@ st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 msg = MIMEMultipart('alternative')
 msg['Subject'] = "TEST ONLY " + st
 msg['From'] = email.utils.formataddr(('Author', 'author@example.com'))
-msg['To'] = email.utils.formataddr(('Recipient', 'recipient@example.com'))
+email_to = []
+email_to.append( email.utils.formataddr(('Recipient', 'recipient@example.com')) )
+email_to.append( email.utils.formataddr(('Recipient', 'test@example.com')) )
+msg['To'] = ", ".join(email_to)
 msg['Cc'] = email.utils.formataddr(('Recipient', 'test@example.com'))
 msg['Bcc'] = email.utils.formataddr(('Recipient', 'test@example.com'))
-msg['X-Mailer'] = "test"
+msg.add_header("Mailer", "Python")
 
 text = "Hi!\nHow are you?\nHere is the link you wanted:\nhttp://www.python.org"
 html = """\
